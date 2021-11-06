@@ -17,6 +17,7 @@ https://www.youtube.com/watch?v=WXbw-Yo1Evs
  - Listo!
 
 # Información extra:
+En https://megazar.space/megabot
  - MegaBot-OpenSource es una version de MegaBot de código abierto. No incluye algunas funciones como la copia de seguridad y el registro de usuarios baneados en la nube. Ya que seria una falla de seguridad enseñar el codigo.
  - Esta en beta y contiene bugs que están aún por resolver.
  - Tiene licencia MIT. Significa que puedes usar este proyecto para cualquier fin, tanto personal como comercial y hasta como referencia para el tuyo. Cualquier opinión y feedback son bien recibidas.

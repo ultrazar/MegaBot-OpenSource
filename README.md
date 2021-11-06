@@ -19,3 +19,7 @@
  - MegaBot-OpenSource es una version de MegaBot de código abierto. No incluye algunas funciones como la copia de seguridad y el registro de usuarios baneados en la nube. Ya que seria una falla de seguridad enseñar el codigo.
  - Esta en beta y contiene bugs que están aún por resolver.
  - Tiene licencia MIT. Significa que puedes usar este proyecto para cualquier fin, tanto personal como comercial y hasta como referencia para el tuyo. Cualquier opinión y feedback son bien recibidas.
+
+# Creditos:
+ - Twicth IRC addon for godot: https://github.com/MennoMax/gift (MIT)
+ - Godot (Goost branch): https://goostengine.github.io/ https://godotengine.org/ (MIT)

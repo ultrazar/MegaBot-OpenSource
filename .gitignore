@@ -6,6 +6,8 @@ export_presets.cfg
 
 # Imported translations (automatically generated from CSV files)
 *.translation
+*.travis.yml
+*format.sh
 
 # Mono-specific ignores
 .mono/

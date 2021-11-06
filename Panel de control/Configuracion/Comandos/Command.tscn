@@ -1,0 +1,48 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Panel de control/Configuracion/Comandos/Command.gd" type="Script" id=1]
+
+[node name="Command" type="Control"]
+margin_right = 497.0
+margin_bottom = 46.0
+rect_min_size = Vector2( 0, 40 )
+size_flags_horizontal = 3
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_right = 246.0
+margin_bottom = 28.0
+text = "Test        -      \"[usuario], funciona!\""
+valign = 1
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="edit" type="Button" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -140.0
+margin_top = 3.0
+margin_right = -146.0
+margin_bottom = 28.0
+text = "Editar"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="delete" type="Button" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -80.0
+margin_top = 3.0
+margin_right = -80.0
+margin_bottom = 28.0
+custom_colors/font_color = Color( 1, 0.415686, 0.415686, 1 )
+text = "Eliminar"
+__meta__ = {
+"_edit_use_anchors_": false
+}

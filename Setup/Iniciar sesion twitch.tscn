@@ -1,0 +1,142 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Twitch logo.png" type="Texture" id=2]
+[ext_resource path="res://Imagenes/Cargar.tres" type="Texture" id=3]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node2D
+var pos
+export var scopes : PoolStringArray
+var esperando_respuesta = false
+signal finalizado(token ,refresh_token)
+var control
+var root
+var bol = false
+
+func _ready():
+	root = get_tree().root
+	control = position / Vector2(1280,720)
+	
+	pos = Tools.padre.pos
+
+func _process(delta):
+	position = root.size * control
+	if esperando_respuesta:
+		var archivo = File.new()
+		archivo.open(pos + \"\\\\auth.mega-file\",archivo.READ)
+		var archive = archivo.get_line()
+		archivo.close()
+		if archive[0] != \" \":
+			Directory.new().remove(pos + \"\\\\auth.mega-file\")
+			var result = archive.right(1).split(\",\")
+			$Boton/Label.show()
+			$Boton/Label.text = \"Finalizado\"
+			$Cargar.hide()
+			emit_signal(\"finalizado\",result[0],result[1])
+			esperando_respuesta = false
+
+
+func _on_Boton_button_up():
+	if bol:
+		return
+	bol = true
+	var archivo = File.new()
+	archivo.open(pos + \"\\\\auth.mega-file\",archivo.WRITE)
+	if scopes.join(\"\") != \"\":
+		archivo.store_string(\" \" + scopes.join(\",\") + \",\")
+	else: 
+		archivo.store_string(\" \")
+	archivo.close()
+	$Boton/Label.visible = false
+	$Cargar.visible = true
+	esperando_respuesta = true
+	OS.execute(pos + \"\\\\Twitch_autentificador.exe\",[],false)
+
+"
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.47451, 0.227451, 0.831373, 1 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0.572549, 0.27451, 1, 1 )
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.305882, 0.14902, 0.521569, 1 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0.572549, 0.27451, 1, 1 )
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.572549, 0.27451, 1, 1 )
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[node name="Iniciar sesión twitch" type="Node2D"]
+script = SubResource( 1 )
+
+[node name="Boton" type="Button" parent="."]
+anchor_right = 0.192
+margin_left = -150.0
+margin_top = -25.0
+margin_right = 150.879
+margin_bottom = 25.0
+focus_mode = 0
+custom_styles/hover = SubResource( 2 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/focus = SubResource( 4 )
+custom_styles/disabled = SubResource( 4 )
+custom_styles/normal = SubResource( 4 )
+shortcut_in_tooltip = false
+action_mode = 0
+enabled_focus_mode = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Boton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -1.879
+margin_bottom = 1.0
+text = "Iniciar sesión con twitch"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="Boton/Label"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 26.6776
+margin_top = 11.6663
+margin_right = -205.201
+margin_bottom = -12.3337
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Cargar" type="Sprite" parent="."]
+visible = false
+modulate = Color( 0.572549, 0.27451, 1, 1 )
+scale = Vector2( 0.15, 0.15 )
+texture = ExtResource( 3 )
+
+[connection signal="button_up" from="Boton" to="." method="_on_Boton_button_up"]

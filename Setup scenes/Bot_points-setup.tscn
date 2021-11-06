@@ -1,0 +1,115 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Setup scenes/Bot_points-setup.gd" type="Script" id=1]
+[ext_resource path="res://Fuentes/fuente pixel 1.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Canjeos control/Main.tscn" type="PackedScene" id=3]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.215686, 0.215686, 0.215686, 0.784314 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="DynamicFont" id=2]
+size = 28
+use_filter = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+use_filter = true
+extra_spacing_bottom = -9
+font_data = ExtResource( 2 )
+
+[node name="Bot_mode" type="Control"]
+margin_right = 624.705
+margin_bottom = 371.086
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Fondito" type="Panel" parent="."]
+margin_left = -200.0
+margin_top = -150.0
+margin_right = 200.0
+margin_bottom = 150.0
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Siguiente" type="Button" parent="."]
+margin_left = 83.0
+margin_top = 116.0
+margin_right = 156.0
+margin_bottom = 136.0
+disabled = true
+shortcut_in_tooltip = false
+text = "Continuar"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_left = -198.0
+margin_top = -139.0
+margin_right = 200.0
+margin_bottom = -94.0
+custom_fonts/font = SubResource( 2 )
+text = "Sistema de puntos"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Texto" type="Label" parent="."]
+margin_left = -180.0
+margin_top = -104.0
+margin_right = 183.0
+margin_bottom = -46.0
+custom_fonts/font = SubResource( 3 )
+text = "Selecciona el canjeo que vas a usar para añadir puntos al usuario. Ten en cuenta que solo se podran rechazar/aceptar los canjeos creados por el programa."
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Canjeos control" parent="." instance=ExtResource( 3 )]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -182.0
+margin_top = -50.0
+margin_right = -441.705
+margin_bottom = -259.086
+
+[node name="GridContainer" parent="Canjeos control/ScrollContainer" index="0"]
+margin_right = 334.4
+margin_bottom = 162.0
+columns = 4
+
+[node name="Control4" parent="Canjeos control/ScrollContainer/GridContainer" index="3"]
+margin_left = 225.0
+margin_top = 0.0
+margin_right = 295.0
+margin_bottom = 70.0
+
+[node name="confirmacion" type="ConfirmationDialog" parent="."]
+visible = true
+margin_left = -98.0
+margin_top = -14.0
+margin_right = 102.0
+margin_bottom = 56.0
+window_title = "Quieres seleccionar "
+dialog_text = "Se puede cambiar después."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="Siguiente" to="." method="_on_Siguiente_pressed"]
+[connection signal="selected" from="Canjeos control" to="." method="_on_Canjeos_control_selected"]
+[connection signal="confirmed" from="confirmacion" to="." method="_on_confirmacion_confirmed"]
+
+[editable path="Canjeos control"]
+[editable path="Canjeos control/ScrollContainer/GridContainer/Control"]

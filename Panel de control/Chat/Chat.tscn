@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Tema/v1.tres" type="Theme" id=1]
+[ext_resource path="res://Panel de control/Chat/Chat.gd" type="Script" id=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+content_margin_left = 22.0
+content_margin_right = 6.0
+content_margin_top = 6.0
+content_margin_bottom = 4.0
+bg_color = Color( 0.15, 0.1725, 0.2325, 1 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0.12549, 0.145098, 0.192157, 1 )
+
+[node name="Chat" type="Control"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -300.0
+margin_top = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+margin_right = 300.0
+margin_bottom = 400.0
+custom_styles/normal = SubResource( 1 )
+bbcode_enabled = true
+bbcode_text = "test"
+text = "test"
+scroll_active = false
+scroll_following = true
+__meta__ = {
+"_edit_use_anchors_": false
+}

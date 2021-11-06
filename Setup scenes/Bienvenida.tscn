@@ -1,0 +1,75 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Fuentes/fuente pixel 1.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Setup scenes/Bienvenida.gd" type="Script" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 56
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 32
+font_data = ExtResource( 1 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "animacion"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Label2:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.5, 2.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Label:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="Bienvenida" type="Control"]
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_left = -124.0
+margin_top = -261.0
+margin_right = 126.0
+margin_bottom = 14.0
+custom_fonts/font = SubResource( 1 )
+text = "Bienvenido"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = -638.0
+margin_top = -197.0
+margin_right = 638.0
+margin_bottom = 123.0
+custom_fonts/font = SubResource( 2 )
+text = "Vamos a empezar a configurar tu bot"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Animacion" type="AnimationPlayer" parent="."]
+autoplay = "animacion"
+anims/animacion = SubResource( 3 )
+[connection signal="animation_finished" from="Animacion" to="." method="_on_Animacion_animation_finished"]

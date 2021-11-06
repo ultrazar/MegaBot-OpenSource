@@ -1,0 +1,65 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Setup/Fondito.gd" type="Script" id=1]
+
+[sub_resource type="OpenSimplexNoise" id=1]
+seed = 3
+octaves = 9
+period = 200.0
+persistence = 0.6
+lacunarity = 0.1
+
+[sub_resource type="NoiseTexture" id=2]
+width = 2560
+height = 1440
+noise = SubResource( 1 )
+
+[node name="Sprite2" type="Node2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 1280, 720 )
+texture = SubResource( 2 )
+
+[node name="Sprite2" type="Sprite" parent="."]
+position = Vector2( 3840, 720 )
+scale = Vector2( -1, 1 )
+texture = SubResource( 2 )
+
+[node name="Sprite3" type="Sprite" parent="."]
+position = Vector2( 3840, 2160 )
+scale = Vector2( -1, -1 )
+texture = SubResource( 2 )
+
+[node name="Sprite4" type="Sprite" parent="."]
+position = Vector2( 1280, 2160 )
+scale = Vector2( 1, -1 )
+texture = SubResource( 2 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( 7.33887, 9.79102 )
+rect = Rect2( 0, 0, 5120, 2880 )
+
+[node name="VisibilityNotifier2D2" type="VisibilityNotifier2D" parent="."]
+position = Vector2( 5127.34, 9.79102 )
+rect = Rect2( 0, 0, 5120, 2880 )
+
+[node name="VisibilityNotifier2D5" type="VisibilityNotifier2D" parent="."]
+position = Vector2( -5112.66, 9.79102 )
+rect = Rect2( 0, 0, 5120, 2880 )
+
+[node name="VisibilityNotifier2D3" type="VisibilityNotifier2D" parent="."]
+position = Vector2( 0, -2870.21 )
+rect = Rect2( 0, 0, 5120, 2880 )
+
+[node name="VisibilityNotifier2D4" type="VisibilityNotifier2D" parent="."]
+position = Vector2( 0, 2889.79 )
+rect = Rect2( 0, 0, 5120, 2880 )
+[connection signal="viewport_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_viewport_exited"]
+[connection signal="viewport_entered" from="VisibilityNotifier2D2" to="." method="entered" binds= [ Vector2( 2560, -1440 ) ]]
+[connection signal="viewport_entered" from="VisibilityNotifier2D5" to="." method="entered" binds= [ Vector2( -7680, -1440 ) ]]
+[connection signal="viewport_entered" from="VisibilityNotifier2D3" to="." method="entered" binds= [ Vector2( -2560, -4320 ) ]]
+[connection signal="viewport_entered" from="VisibilityNotifier2D4" to="." method="entered" binds= [ Vector2( -2560, 1440 ) ]]

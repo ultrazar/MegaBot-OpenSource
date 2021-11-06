@@ -1,0 +1,151 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Setup scenes/Bot_mode.gd" type="Script" id=1]
+[ext_resource path="res://Fuentes/fuente pixel 1.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.215686, 0.215686, 0.215686, 0.784314 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="ButtonGroup" id=2]
+
+[sub_resource type="DynamicFont" id=3]
+use_filter = true
+extra_spacing_bottom = -10
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 28
+use_filter = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="Animation" id=5]
+resource_name = "Entrada"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="Bot_mode" type="Control"]
+margin_right = 624.705
+margin_bottom = 371.086
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Fondito" type="Panel" parent="."]
+margin_left = -200.0
+margin_top = -150.0
+margin_right = 200.0
+margin_bottom = 150.0
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Bot personalizado" type="CheckBox" parent="."]
+margin_left = -153.372
+margin_top = 35.3727
+margin_right = -129.372
+margin_bottom = 59.3727
+pressed = true
+group = SubResource( 2 )
+text = "Bot personalizado"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="Bot personalizado"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_right = 252.0
+margin_bottom = 45.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0.662745, 0.662745, 0.662745, 1 )
+text = "El bot usará una cuenta secundaria (recomendado)"
+align = 1
+autowrap = true
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Bot canal" type="CheckBox" parent="."]
+margin_left = -153.372
+margin_top = -64.6273
+margin_right = -129.372
+margin_bottom = -40.6273
+group = SubResource( 2 )
+text = "Bot canal"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Bot canal"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_right = 237.942
+margin_bottom = 43.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0.662745, 0.662745, 0.662745, 1 )
+text = "El bot usará la cuenta de tu canal"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Siguiente" type="Button" parent="."]
+margin_left = 83.0
+margin_top = 116.0
+margin_right = 156.0
+margin_bottom = 136.0
+shortcut_in_tooltip = false
+text = "Continuar"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_left = -198.0
+margin_top = -130.0
+margin_right = 200.0
+margin_bottom = -85.0
+custom_fonts/font = SubResource( 4 )
+text = "Que cuenta quiere usar?"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Advertencia" type="AcceptDialog" parent="."]
+margin_left = -164.397
+margin_top = -111.085
+margin_right = 153.603
+margin_bottom = 84.9146
+popup_exclusive = true
+window_title = "¡Advertencia!"
+dialog_text = "Para que el bot funcione correctamente, necesita acceso prácticamente total de la cuenta. Ten en cuenta que si usas la cuenta de tu canal, tendras de dar acceso a susurros, follows y modificar el usuario en si."
+dialog_autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="animacion" type="AnimationPlayer" parent="."]
+autoplay = "Entrada"
+anims/Entrada = SubResource( 5 )
+
+[connection signal="pressed" from="Bot canal" to="." method="_on_Bot_canal_pressed"]
+[connection signal="pressed" from="Siguiente" to="." method="presionado"]

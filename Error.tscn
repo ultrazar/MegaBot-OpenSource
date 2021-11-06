@@ -1,0 +1,17 @@
+[gd_scene format=2]
+
+[node name="Alert" type="AcceptDialog"]
+pause_mode = 2
+process_priority = 3
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 431.34
+margin_top = 263.537
+margin_right = -416.66
+margin_bottom = -258.463
+popup_exclusive = true
+window_title = "ERROR"
+dialog_autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}

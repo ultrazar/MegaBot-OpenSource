@@ -1,0 +1,61 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Setup/Centering.gd" type="Script" id=1]
+[ext_resource path="res://Fuentes/fuente pixel 1.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Setup/Main.gd" type="Script" id=3]
+[ext_resource path="res://Setup/Fondo.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Mega sign-up/log twitch.tscn" type="PackedScene" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+size = 24
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 2 )
+
+[node name="Main" type="Node2D"]
+pause_mode = 2
+script = ExtResource( 3 )
+
+[node name="Fondo" parent="." instance=ExtResource( 4 )]
+position = Vector2( 477.33, 358.282 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 128.076
+margin_top = -18.2487
+margin_right = 826.076
+margin_bottom = 136.751
+size_flags_horizontal = 4
+custom_fonts/font = SubResource( 1 )
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color( 0.172549, 0.286275, 0.717647, 1 )
+margin_left = 24.287
+margin_top = 14.3327
+margin_right = 150.287
+margin_bottom = 112.333
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Center" type="Control" parent="."]
+margin_left = -1.68176
+margin_top = 1.68176
+margin_right = 3265.01
+margin_bottom = 3579.06
+grow_horizontal = 0
+grow_vertical = 0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Iniciar sesión twitch" parent="Center" instance=ExtResource( 6 )]
+
+[connection signal="finalizado" from="Center/Iniciar sesión twitch" to="." method="comenzar"]

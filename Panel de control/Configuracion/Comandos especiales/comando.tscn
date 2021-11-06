@@ -1,0 +1,19 @@
+[gd_scene format=2]
+
+[node name="tts" type="CheckBox"]
+margin_right = 429.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 0, 40 )
+text = "Eliminar último mensaje"
+
+[node name="button" type="Button" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -58.0
+margin_top = 5.0
+margin_bottom = -5.0
+text = "Editar"
+__meta__ = {
+"_edit_use_anchors_": false
+}
